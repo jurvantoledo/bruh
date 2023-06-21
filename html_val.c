@@ -53,7 +53,7 @@ char    *remove_tags(char *str)
 
     while (str[k])
     {
-        while (str[k] && str[k] == '/' || str[k] == '>')
+        while ((str[k] && str[k] == '/') || str[k] == '>')
         {
             k++;
         }
@@ -79,9 +79,10 @@ int compare_tags(char **arr, int size)
         char *s2 = arr[midUp];
         midDown--;
         midUp++;
-        if (check_for_self_closing(s1, s2) == 0)
-            return (0);
-        else if (strcmp(remove_tags(s1), remove_tags(s2)) != 0)
+        // Deze functie ff verplaatsen dat <img /> ook werkt bijv.
+        // if (check_for_self_closing(s1, s2) == 0)
+        //     return (0);
+        if (strcmp(remove_tags(s1), remove_tags(s2)) != 0)
             return (1);
         begin++;
     }
